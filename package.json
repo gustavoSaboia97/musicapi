@@ -1,0 +1,24 @@
+{
+  "name": "musicapi",
+  "version": "1.0.0",
+  "description": "CRUD for music information",
+  "main": "./src/app.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "dev": "nodemon --exec babel-node ./src/app",
+    "build": "babel --presets es2015 -d dist/ src",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gustavo Saboia",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "nodemon": "^1.18.10"
+  }
+}
