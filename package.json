@@ -8,7 +8,8 @@
   },
   "scripts": {
     "dev": "nodemon --exec babel-node ./src/app",
-    "build": "babel --presets es2015 -d dist/ src",
+    "build": "babel src --out-dir dist",
+    "start": "node ./dist/app",
     "test": "jest --verbose"
   },
   "author": "Gustavo Saboia",
@@ -18,6 +19,7 @@
     "express": "^4.16.4"
   },
   "devDependencies": {
+    "@babel/cli": "^7.4.3",
     "@babel/core": "^7.4.3",
     "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.4.3",

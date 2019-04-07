@@ -1,16 +1,36 @@
 import JsonClassTransformer from '../../../../src/util/JsonClassTransformer'
+import Music from '../../../../src/models/Music'
+import Album from '../../../../src/models/Album'
+import Author from '../../../../src/models/Author'
 
-jest.mock(JSON)
+let jsonTransformer = new JsonClassTransformer()
 
-beforeEach(() => {
-    JSON.mockClear()
+it('Should convert class to json without "_"(underscores) Music', () => {
+    let music = new Music('Music Name', 'Music Genre', 12345)
+
+    let jsonResult = jsonTransformer.transform(music)
+
+    let jsonString = JSON.stringify(jsonResult)
+
+    expect(jsonString.includes('_')).toEqual(false)
 });
 
-it('Should convert class to json without "_"(underscores) ', () => {
+it('Should convert class to json without "_"(underscores) Album', () => {
+    let album = new Album('Album Name', [])
 
-    var jsonResponse = dataExtractor.extractDataFromAdmin()
+    let jsonResult = jsonTransformer.transform(album)
 
-    var url = "http://odin-dev.cloud.dev.globoi.com/ort/api/wall/1/"
+    let jsonString = JSON.stringify(jsonResult)
 
-    expect(Request).toHaveBeenCalledWith(url, env.ODIN_AUTH)
+    expect(jsonString.includes('_')).toEqual(false)
+});
+
+it('Should convert class to json without "_"(underscores) Author', () => {
+    let author = new Author('Author Name', [])
+
+    let jsonResult = jsonTransformer.transform(author)
+
+    let jsonString = JSON.stringify(jsonResult)
+
+    expect(jsonString.includes('_')).toEqual(false)
 });
