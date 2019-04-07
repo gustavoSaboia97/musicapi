@@ -2,28 +2,27 @@ import basicAuth from 'basic-auth'
 
 export default class Authenticator{
 
-    constructor(){
-        this._user = process.env.USER || "user"
-        this._password = process.env.PASSWORD || "password"
-    }
+    authenticate(req, res, next){    
+        
+        const userAuth = basicAuth(req)
 
-    authenticate(req, res, next){     
-        console.log(this)
-        let user = basicAuth(req)
+        const login = process.env.LOGIN || "login"
+        const password = process.env.PASSWORD || "password"
 
-        if (!user || !user.name || !user.pass) {
-            return this._unauthorized(res)
+        const unauthorized = (req) => {
+            res.set('WWW-Authenticate', 'Basic realm=Authorization Required')
+            return res.sendStatus(401)
+        }
+
+        if (!userAuth || !userAuth.name || !userAuth.pass) {
+            return unauthorized(res)
         }
         
-        if (user.name === this._user && user.pass === this._password) {
+        if (userAuth.name === login && userAuth.pass === password) {
             return next()
         } else {
-            return this._unauthorized(res)
+            return unauthorized(res)
         }
     }
 
-    _unauthorized(res){
-        res.set('WWW-Authenticate', 'Basic realm=Authorization Required')
-        return res.sendStatus(401)
-    }
 }
