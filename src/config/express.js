@@ -1,9 +1,13 @@
 import express from 'express'
-import router from '../routes/api-routes'
+import apiRoutes from '../routes/apiRoutes'
+import authorRoutes from '../routes/authorRoutes'
+
 
 //Express APP
 const app = express()
 
-app.use(router)
+//Routes
+app.use(apiRoutes)
+app.use(authorRoutes)
 
 export default app
