@@ -9,7 +9,7 @@ export default class Author{
         return this._name
     }
 
-    getAlbum(){
+    getAlbums(){
         return this._albums
     }
 }
