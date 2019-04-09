@@ -8,15 +8,15 @@ const urlBuilder = new UrlBuilder()
 const authenticator = new Authenticator()
 const authorController = new AuthorController()
 
-router.get(urlBuilder.AUTHOR, authenticator.authenticate, authorController.getAuthors)
+router.get(urlBuilder.AUTHOR, authenticator.authenticate, (req, resp) => authorController.getAuthors(req, resp))
 
-router.post(urlBuilder.AUTHOR, authenticator.authenticate, authorController.addAuthor)
+router.post(urlBuilder.AUTHOR, authenticator.authenticate, (req, resp) => authorController.addAuthor(req, resp))
 
-router.get(urlBuilder.AUTHOR_ID, authenticator.authenticate, authorController.getAuthor)
+router.get(urlBuilder.AUTHOR_ID, authenticator.authenticate, (req, resp) => authorController.getAuthor(req, resp))
 
-router.put(urlBuilder.AUTHOR_ID, authenticator.authenticate, authorController.getAuthor)
+router.put(urlBuilder.AUTHOR_ID, authenticator.authenticate, (req, resp) => authorController.editAuthor(req, resp))
 
-router.delete(urlBuilder.AUTHOR_ID, authenticator.authenticate, authorController.getAuthor)
+router.delete(urlBuilder.AUTHOR_ID, authenticator.authenticate, (req, resp) => authorController.deleteAuthor(req, resp))
 
 
 export default router

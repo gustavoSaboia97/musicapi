@@ -2,7 +2,7 @@ export default class AuthorBusiness{
 
     constructor(){}
 
-    async getAuthors(){}
+    async getAuthors(){ return [] }
 
     async addAuthor(name){}
 

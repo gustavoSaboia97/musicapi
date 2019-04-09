@@ -9,4 +9,4 @@ it('Should set correct data to Album', () => {
 
     expect(album.getName()).toEqual(name)
     expect(album.getMusics()).toEqual(musics)
-});
+})

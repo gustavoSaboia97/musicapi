@@ -11,4 +11,4 @@ it('Should set correct data to Music', () => {
     expect(music.getName()).toEqual(name)
     expect(music.getGenre()).toEqual(genre)
     expect(music.getTrackTimeMillis()).toEqual(time)
-});
+})
