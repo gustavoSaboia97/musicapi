@@ -8,7 +8,7 @@ export default class AuthorController{
         this._json = new JsonClassTransformer()
     }
 
-    async getAuthors(req, resp){
+    getAuthors(req, resp){
         console.log('Getting the authors')
 
         let authors = this._business.getAuthors()
@@ -16,7 +16,7 @@ export default class AuthorController{
         resp.status(200).json(this._json.transform(authors))
     }
 
-    async addAuthor(req, resp){
+    addAuthor(req, resp){
         console.log(`Adding an author ${req.body.name}`)
 
         let name = req.body.name
@@ -26,7 +26,7 @@ export default class AuthorController{
         resp.status(200).json(this._json.transform(author))
     }
 
-    async getAuthor(req, resp){
+    getAuthor(req, resp){
         console.log(`Get an author ID: ${req.params.id}`)
 
         let id = req.params.id
@@ -36,7 +36,7 @@ export default class AuthorController{
         resp.status(200).json(this._json.transform(author))
     }
 
-    async editAuthor(req, resp){
+    editAuthor(req, resp){
         console.log(`Editting an author ID: ${req.params.id}`)
 
         let name = req.body.name
@@ -48,7 +48,7 @@ export default class AuthorController{
         resp.status(200).json(this._json.transform(author))
     }
 
-    async deleteAuthor(req, resp){
+    deleteAuthor(req, resp){
         console.log(`Deleting an author ID: ${req.params.id}`)
 
         let id = req.params.id

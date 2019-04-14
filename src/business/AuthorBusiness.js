@@ -2,13 +2,13 @@ export default class AuthorBusiness{
 
     constructor(){}
 
-    async getAuthors(){ return [] }
+    getAuthors(){ return [] }
 
-    async addAuthor(name){}
+    addAuthor(name){}
 
-    async getAuthor(id){}
+    getAuthor(id){}
 
-    async editAuthor(id, name){}
+    editAuthor(id, name){}
 
-    async deleteAuthor(id){}
+    deleteAuthor(id){}
 }

@@ -27,6 +27,9 @@
     "@babel/preset-env": "^7.4.3",
     "babel-jest": "^24.7.1",
     "jest": "^24.7.1",
-    "nodemon": "^1.18.10"
+    "mock-req-res": "^1.0.5",
+    "nodemon": "^1.18.10",
+    "sinon": "^7.3.1",
+    "sinon-express-mock": "^2.2.0"
   }
 }
