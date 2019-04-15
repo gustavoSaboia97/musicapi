@@ -8,10 +8,10 @@ export default class AuthorController{
         this._json = new JsonClassTransformer()
     }
 
-    getAuthors(req, resp){
+    async getAuthors(req, resp){
         console.log('Getting the authors')
 
-        let authors = this._business.getAuthors()
+        let authors = await this._business.getAuthors()
         
         resp.status(200).json(this._json.transform(authors))
     }

@@ -1,8 +1,16 @@
+import AuthorRepository from '../repository/AuthorRepository'
+
 export default class AuthorBusiness{
 
-    constructor(){}
+    constructor(){
+        this._authorRepository = new AuthorRepository()
+    }
 
-    getAuthors(){ return [] }
+    async getAuthors(){
+        console.log(`Getting all authors from repository`)
+        
+        return await this._authorRepository.getAuthors()
+    }
 
     addAuthor(name){}
 

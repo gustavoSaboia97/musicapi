@@ -22,61 +22,61 @@ beforeEach(() => {
     JsonClassTransformer.mockClear()
 });
 
-it('Should get all authors', () => {
+it('Should get all authors', async () => {
     let authorController = new AuthorController()
 
     let mockAuthorBusiness = AuthorBusiness.mock.instances[0];
     let mockGetAuthors = mockAuthorBusiness.getAuthors 
 
-    let response = authorController.getAuthors(mockRequest, mockResponse)
+    let response = await authorController.getAuthors(mockRequest, mockResponse)
 
     expect(mockGetAuthors).toHaveBeenCalled()
     expect(AuthorBusiness).toHaveBeenCalled()
 })
 
-it('Should add authors', () => {
+it('Should add authors', async () => {
     let authorController = new AuthorController()
 
     let mockAuthorBusiness = AuthorBusiness.mock.instances[0];
     let mockAddAuthor = mockAuthorBusiness.addAuthor 
 
-    let response = authorController.addAuthor(mockRequest, mockResponse)
+    let response = await authorController.addAuthor(mockRequest, mockResponse)
 
     expect(mockAddAuthor).toHaveBeenCalled()
     expect(AuthorBusiness).toHaveBeenCalled()
 })
 
-it('Should get author', () => {
+it('Should get author', async () => {
     let authorController = new AuthorController()
 
     let mockAuthorBusiness = AuthorBusiness.mock.instances[0];
     let mockGetAuthor = mockAuthorBusiness.getAuthor 
 
-    let response = authorController.getAuthor(mockRequest, mockResponse)
+    let response = await authorController.getAuthor(mockRequest, mockResponse)
 
     expect(mockGetAuthor).toHaveBeenCalled()
     expect(AuthorBusiness).toHaveBeenCalled()
 })
 
-it('Should get author', () => {
+it('Should get author', async () => {
     let authorController = new AuthorController()
 
     let mockAuthorBusiness = AuthorBusiness.mock.instances[0];
     let mockEditAuthor = mockAuthorBusiness.editAuthor 
 
-    let response = authorController.editAuthor(mockRequest, mockResponse)
+    let response = await authorController.editAuthor(mockRequest, mockResponse)
 
     expect(mockEditAuthor).toHaveBeenCalled()
     expect(AuthorBusiness).toHaveBeenCalled()
 })
 
-it('Should delete author', () => {
+it('Should delete author', async () => {
     let authorController = new AuthorController()
 
     let mockAuthorBusiness = AuthorBusiness.mock.instances[0];
     let mockDeleteAuthor = mockAuthorBusiness.deleteAuthor 
 
-    let response = authorController.deleteAuthor(mockRequest, mockResponse)
+    let response = await authorController.deleteAuthor(mockRequest, mockResponse)
 
     expect(mockDeleteAuthor).toHaveBeenCalled()
     expect(AuthorBusiness).toHaveBeenCalled()

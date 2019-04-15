@@ -1,5 +1,16 @@
 # Music API
 
+This is an CRUD that is responsible for getting data about some Artist, Music or Album, search information on Apple iTunes API and inserting that in a MongoDB.
+
+## Technologies
+
+* Node.js
+* MongoDB
+
+## Necessary Configuration
+
+`MONGO_DB_URI=mongodb://localhost:27017/music`
+
 ## Tests
 
 The tests are configured to run with Jest. To run the tests:
@@ -48,4 +59,20 @@ Response:
 {
     "status": "UP"
 }
+```
+
+### Get Authors - "/api/author/"
+
+To get all authors that are in the database, and all his information.
+
+Ex:
+
+    GET: http://localhost:3000/api/author/
+
+Response:
+
+* Status Code: 200
+
+``` 
+    []
 ```
