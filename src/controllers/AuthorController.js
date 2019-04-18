@@ -16,12 +16,12 @@ export default class AuthorController{
         resp.status(200).json(this._json.transform(authors))
     }
 
-    addAuthor(req, resp){
+    async addAuthor(req, resp){
         console.log(`Adding an author ${req.body.name}`)
 
         let name = req.body.name
 
-        let author = this._business.addAuthor(name)
+        let author = await this._business.addAuthor(name)
 
         resp.status(200).json(this._json.transform(author))
     }

@@ -1,4 +1,5 @@
 import AuthorRepository from '../repository/AuthorRepository'
+import Author from '../models/Author';
 
 export default class AuthorBusiness{
 
@@ -12,7 +13,12 @@ export default class AuthorBusiness{
         return await this._authorRepository.getAuthors()
     }
 
-    addAuthor(name){}
+    async addAuthor(name){
+        console.log(`Adding new author on repository: ${name}`)
+        let author = new Author(name, [])
+        author = await this._authorRepository.insertAuthor(author)
+        return author
+    }
 
     getAuthor(id){}
 

@@ -5,6 +5,14 @@ export default class Author{
         this._albums = albuns
     }
 
+    setId(id){
+        this._id = id
+    }
+
+    getId(){
+        return this._id
+    }
+
     getName(){
         return this._name
     }
