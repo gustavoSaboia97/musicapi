@@ -1,5 +1,6 @@
 import AuthorRepository from '../repository/AuthorRepository'
 import Author from '../models/Author';
+import NotFoundError from '../errors/errorTypes/NotFoundError'
 
 export default class AuthorBusiness{
 
@@ -8,21 +9,37 @@ export default class AuthorBusiness{
     }
 
     async getAuthors(){
-        console.log(`Getting all authors from repository`)
-        
+        console.log(`[BUSINESS] Getting all authors from repository`)
+        throw (new NotFoundError("NO"))
         return await this._authorRepository.getAuthors()
     }
 
     async addAuthor(name){
-        console.log(`Adding new author on repository: ${name}`)
+        console.log(`[BUSINESS] Adding new author on repository: ${name}`)
         let author = new Author(name, [])
         author = await this._authorRepository.insertAuthor(author)
         return author
     }
 
-    getAuthor(id){}
+    async getAuthorById(id){
+        console.log(`[BUSINESS] Getting author information on repository: ${id}`)
+        let author = await this._authorRepository.getAuthorById(id)
+        return author
+    }
 
-    editAuthor(id, name){}
+    async editAuthor(id, name){
+        console.log(`[BUSINESS] Edit author information on repository: ${id} | ${name}`)
+        
+    }
 
-    deleteAuthor(id){}
+    async deleteAuthor(id){
+        console.log(`[BUSINESS] Delete author information on repository: ${id}`)
+        let removed = await this._authorRepository.deleteAuthor(id)
+        
+        console.log(`[BUSINESS] Author ${id} Deleted? ${removed}`)
+        if (removed)
+            throw new NotFoundError()
+
+        return removed
+    }
 }

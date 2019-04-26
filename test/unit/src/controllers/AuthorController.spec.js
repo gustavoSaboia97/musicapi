@@ -25,7 +25,7 @@ beforeEach(() => {
 it('Should get all authors', async () => {
     let authorController = new AuthorController()
 
-    let mockAuthorBusiness = AuthorBusiness.mock.instances[0];
+    let mockAuthorBusiness = AuthorBusiness.mock.instances[0]
     let mockGetAuthors = mockAuthorBusiness.getAuthors 
 
     let response = await authorController.getAuthors(mockRequest, mockResponse)
@@ -37,7 +37,7 @@ it('Should get all authors', async () => {
 it('Should add authors', async () => {
     let authorController = new AuthorController()
 
-    let mockAuthorBusiness = AuthorBusiness.mock.instances[0];
+    let mockAuthorBusiness = AuthorBusiness.mock.instances[0]
     let mockAddAuthor = mockAuthorBusiness.addAuthor 
 
     let response = await authorController.addAuthor(mockRequest, mockResponse)
@@ -49,7 +49,7 @@ it('Should add authors', async () => {
 it('Should get author', async () => {
     let authorController = new AuthorController()
 
-    let mockAuthorBusiness = AuthorBusiness.mock.instances[0];
+    let mockAuthorBusiness = AuthorBusiness.mock.instances[0]
     let mockGetAuthor = mockAuthorBusiness.getAuthor 
 
     let response = await authorController.getAuthor(mockRequest, mockResponse)
@@ -58,10 +58,10 @@ it('Should get author', async () => {
     expect(AuthorBusiness).toHaveBeenCalled()
 })
 
-it('Should get author', async () => {
+it('Should edit author', async () => {
     let authorController = new AuthorController()
 
-    let mockAuthorBusiness = AuthorBusiness.mock.instances[0];
+    let mockAuthorBusiness = AuthorBusiness.mock.instances[0]
     let mockEditAuthor = mockAuthorBusiness.editAuthor 
 
     let response = await authorController.editAuthor(mockRequest, mockResponse)
@@ -73,7 +73,7 @@ it('Should get author', async () => {
 it('Should delete author', async () => {
     let authorController = new AuthorController()
 
-    let mockAuthorBusiness = AuthorBusiness.mock.instances[0];
+    let mockAuthorBusiness = AuthorBusiness.mock.instances[0]
     let mockDeleteAuthor = mockAuthorBusiness.deleteAuthor 
 
     let response = await authorController.deleteAuthor(mockRequest, mockResponse)

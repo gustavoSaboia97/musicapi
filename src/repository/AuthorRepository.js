@@ -5,13 +5,13 @@ export default class AuthorRepository{
     constructor(){}
 
     async getAuthors(){
-        console.log(`Getting authors from database`)
+        console.log(`[REPOSITORY] Getting authors`)
 
-        return MongoAuthor.find()
+        return await MongoAuthor.find()
     }
 
     async insertAuthor(newAuthor){
-        console.log(`Inserting new author in database: ${newAuthor.getName()}`)
+        console.log(`[REPOSITORY] Inserting new author in database: ${newAuthor.getName()}`)
         
         let mongoAuthor = MongoAuthor({name: newAuthor.getName(), albums: newAuthor.getAlbums()})
 
@@ -22,5 +22,24 @@ export default class AuthorRepository{
         newAuthor.setId(mongoAuthor._id)
         
         return newAuthor
+    }
+
+    async getAuthorById(authorId){
+        console.log(`[REPOSITORY] Getting author with ID in: ${authorId}`)
+
+        return MongoAuthor.findById(authorId, (err, author) => {
+            if (err) return null
+            return author
+        })
+    }
+
+    async deleteAuthor(authorId){
+        console.log(`[REPOSITORY] Deleting author with ID: ${authorId}`)
+
+        return await MongoAuthor.findOneAndDelete(authorId, err => {
+            if (err) return false 
+            return true 
+        })
+        .catch(err => {return false})
     }
 }

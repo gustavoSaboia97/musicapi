@@ -9,10 +9,8 @@ export default class AuthorController{
     }
 
     async getAuthors(req, resp){
-        console.log('Getting the authors')
-
+        console.log('[CONTROLLER] Getting the authors')
         let authors = await this._business.getAuthors()
-        
         resp.status(200).json(this._json.transform(authors))
     }
 
@@ -48,13 +46,13 @@ export default class AuthorController{
         resp.status(200).json(this._json.transform(author))
     }
 
-    deleteAuthor(req, resp){
-        console.log(`Deleting an author ID: ${req.params.id}`)
+    async deleteAuthor(req, resp){
+        console.log(`[CONTROLLER] Deleting an author ID: ${req.params.id}`)
 
         let id = req.params.id
 
-        let author = this._business.deleteAuthor(id)
+        let response = await this._business.deleteAuthor(id)
         
-        resp.status(200).send()
+        resp.status(response.status).json(this._json.transform(response.msg))
     }
 }

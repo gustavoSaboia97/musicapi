@@ -16,7 +16,7 @@ router.get(urlBuilder.AUTHOR_ID, authenticator.authenticate, (req, resp) => auth
 
 router.put(urlBuilder.AUTHOR_ID, authenticator.authenticate, (req, resp) => authorController.editAuthor(req, resp))
 
-router.delete(urlBuilder.AUTHOR_ID, authenticator.authenticate, (req, resp) => authorController.deleteAuthor(req, resp))
+router.delete(urlBuilder.AUTHOR_ID, authenticator.authenticate, async (req, resp) => await authorController.deleteAuthor(req, resp))
 
 
 export default router

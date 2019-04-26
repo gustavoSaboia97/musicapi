@@ -8,13 +8,13 @@ beforeEach(() => {
     AuthorRepository.mockClear()
 });
 
-it('Should get all authors', async () => {
+it('Should get all authors', () => {
     let authorBusiness = new AuthorBusiness()
 
     let mockAuthorRepository = AuthorRepository.mock.instances[0];
     let mockGetAuthors = mockAuthorRepository.getAuthors 
 
-    let response = await authorBusiness.getAuthors()
+    let response = authorBusiness.getAuthors()
 
     expect(mockGetAuthors).toHaveBeenCalled()
 })
