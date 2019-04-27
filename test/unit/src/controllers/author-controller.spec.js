@@ -1,9 +1,7 @@
-import AuthorBusiness from '../../../../src/business/AuthorBusiness'
-import JsonClassTransformer from '../../../../src/util/JsonClassTransformer'
-import AuthorController from '../../../../src/controllers/AuthorController'
+import AuthorBusiness from '../../../../src/business/author-business'
+import AuthorController from '../../../../src/controllers/author-controller'
 
-jest.mock('../../../../src/business/AuthorBusiness');
-jest.mock('../../../../src/util/JsonClassTransformer');
+jest.mock('../../../../src/business/author-business');
 
 const mockRequest = {
     session: {},
@@ -19,7 +17,6 @@ const mockResponse = {
 
 beforeEach(() => {
     AuthorBusiness.mockClear()
-    JsonClassTransformer.mockClear()
 });
 
 it('Should get all authors', async () => {
@@ -46,11 +43,11 @@ it('Should add authors', async () => {
     expect(AuthorBusiness).toHaveBeenCalled()
 })
 
-it('Should get author', async () => {
+it('Should get author by id', async () => {
     let authorController = new AuthorController()
 
     let mockAuthorBusiness = AuthorBusiness.mock.instances[0]
-    let mockGetAuthor = mockAuthorBusiness.getAuthor 
+    let mockGetAuthor = mockAuthorBusiness.getAuthorById 
 
     let response = await authorController.getAuthor(mockRequest, mockResponse)
 
@@ -74,9 +71,11 @@ it('Should delete author', async () => {
     let authorController = new AuthorController()
 
     let mockAuthorBusiness = AuthorBusiness.mock.instances[0]
-    let mockDeleteAuthor = mockAuthorBusiness.deleteAuthor 
+    let mockDeleteAuthor = mockAuthorBusiness.deleteAuthor
 
-    let response = await authorController.deleteAuthor(mockRequest, mockResponse)
+    mockDeleteAuthor.mockReturnValue({status:200, msg:'msg'})
+
+    await authorController.deleteAuthor(mockRequest, mockResponse)
 
     expect(mockDeleteAuthor).toHaveBeenCalled()
     expect(AuthorBusiness).toHaveBeenCalled()

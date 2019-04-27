@@ -1,5 +1,5 @@
 import express from 'express'
-import UrlBuilder from './components/UrlBuilder'
+import UrlBuilder from './components/url-builder'
 
 const router = express.Router()
 const urlBuilder = new UrlBuilder()

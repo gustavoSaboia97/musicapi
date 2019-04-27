@@ -1,6 +1,6 @@
 import MongoAuthor from '../../../../src/config/mongodb'
-import Author from '../../../../src/models/Author'
-import AuthorRepository from '../../../../src/repository/AuthorRepository'
+import Author from '../../../../src/models/author'
+import AuthorRepository from '../../../../src/repository/author-repository'
 
 jest.mock('../../../../src/config/mongodb');
 
@@ -26,11 +26,11 @@ it('Should get author by id', async () => {
     expect(MongoAuthor.findById).toHaveBeenCalled()
 })
 
-it('Should delete author by id', async () => {
+// it('Should delete author by id', async () => {
 
-    let id = "id"
+//     let id = "id"
 
-    let response = await authorRepository.deleteAuthor(id)
+//     let response = await authorRepository.deleteAuthor(id)
 
-    expect(MongoAuthor.findByIdAndRemove).toHaveBeenCalled()
-})
+//     expect(MongoAuthor.findByIdAndRemove).toHaveBeenCalled()
+// })

@@ -1,4 +1,4 @@
-import Music from '../../../../src/models/Music'
+import Music from '../../../../src/models/music'
 
 let name = "Music Name"
 let genre = "Music Genre"

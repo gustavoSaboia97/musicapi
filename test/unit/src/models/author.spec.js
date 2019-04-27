@@ -1,4 +1,4 @@
-import Author from '../../../../src/models/Author'
+import Author from '../../../../src/models/author'
 
 let id = "id"
 let name = "Author Name"

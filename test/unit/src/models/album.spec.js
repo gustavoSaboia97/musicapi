@@ -1,4 +1,4 @@
-import Album from '../../../../src/models/Album'
+import Album from '../../../../src/models/album'
 
 let name = "Album Name"
 let musics = new Array()

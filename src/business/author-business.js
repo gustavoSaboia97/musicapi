@@ -1,29 +1,28 @@
-import AuthorRepository from '../repository/AuthorRepository'
-import Author from '../models/Author';
-import NotFoundError from '../errors/errorTypes/NotFoundError'
+import AuthorRepository from '../repository/author-repository'
+import Author from '../models/author'
+import NotFoundError from '../errors/errorTypes/not-found-error'
 
 export default class AuthorBusiness{
 
     constructor(){
-        this._authorRepository = new AuthorRepository()
+        this.authorRepository = new AuthorRepository()
     }
 
     async getAuthors(){
         console.log(`[BUSINESS] Getting all authors from repository`)
-        throw (new NotFoundError("NO"))
-        return await this._authorRepository.getAuthors()
+        return await this.authorRepository.getAuthors()
     }
 
     async addAuthor(name){
         console.log(`[BUSINESS] Adding new author on repository: ${name}`)
         let author = new Author(name, [])
-        author = await this._authorRepository.insertAuthor(author)
+        author = await this.authorRepository.insertAuthor(author)
         return author
     }
 
     async getAuthorById(id){
         console.log(`[BUSINESS] Getting author information on repository: ${id}`)
-        let author = await this._authorRepository.getAuthorById(id)
+        let author = await this.authorRepository.getAuthorById(id)
         return author
     }
 
@@ -34,12 +33,11 @@ export default class AuthorBusiness{
 
     async deleteAuthor(id){
         console.log(`[BUSINESS] Delete author information on repository: ${id}`)
-        let removed = await this._authorRepository.deleteAuthor(id)
+        let removed = await this.authorRepository.deleteAuthor(id)
         
         console.log(`[BUSINESS] Author ${id} Deleted? ${removed}`)
-        if (removed)
-            throw new NotFoundError()
-
-        return removed
+        if (!removed){
+            throw new NotFoundError(`Author ${id}`)
+        }
     }
 }

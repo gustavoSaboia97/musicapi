@@ -3,9 +3,8 @@ import ApiError from "./errorTypes/ApiError";
 export default class ErrorHandler{
 
     async apiError(err, req, res, next){
-        console.log(err)
         if (err instanceof ApiError){
-            console.log(`[API ERROR] ${err.msg}`)
+            console.log(`[API ERROR] ${err.message}`)
             res.status(err.status).json(err.message)
         }
         else{
