@@ -25,9 +25,18 @@ export default class AuthorRepository{
     }
 
     async getAuthorById(authorId){
-        console.log(`[REPOSITORY] Getting author with ID in: ${authorId}`)
+        console.log(`[REPOSITORY] Getting author with ID: ${authorId}`)
 
         return await MongoAuthor.findById(authorId, (err, author) => {
+            if (err) return null
+            return author
+        })
+    }
+
+    async getAuthorByName(authorName){
+        console.log(`[REPOSITORY] Getting author with Name: ${authorName}`)
+
+        return await MongoAuthor.findOne({name: authorName}, (err, author) => {
             if (err) return null
             return author
         })

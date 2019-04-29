@@ -2,6 +2,7 @@ import AuthorRepository from '../../../../src/repository/author-repository'
 import AuthorBusiness from '../../../../src/business/author-business'
 import NotFoundError from '../../../../src/errors/errorTypes/not-found-error'
 import Author from '../../../../src/models/author';
+import AuthorAlreadyExistsError from '../../../../src/errors/errorTypes/author-already-exists-error'
 
 jest.mock('../../../../src/repository/author-repository');
 
@@ -12,7 +13,7 @@ beforeEach(() => {
 it('Should get all authors', async () => {
     let authorBusiness = new AuthorBusiness()
 
-    let mockAuthorRepository = AuthorRepository.mock.instances[0];
+    let mockAuthorRepository = AuthorRepository.mock.instances[0]
     let mockGetAuthors = mockAuthorRepository.getAuthors 
 
     let response = await authorBusiness.getAuthors()
@@ -20,12 +21,43 @@ it('Should get all authors', async () => {
     expect(mockGetAuthors).toHaveBeenCalled()
 })
 
+it('Should say that author already exists', async () => {
+    let authorBusiness = new AuthorBusiness()
+    let name = 'Author Name'
+    let author = new Author(name, [])
+
+    let mockAuthorRepository = AuthorRepository.mock.instances[0]
+    let mockGetAuthor = mockAuthorRepository.getAuthorByName
+    let mockInsertAuthor = mockAuthorRepository.insertAuthor
+    
+    mockGetAuthor.mockReturnValue(author)
+
+    await expect(authorBusiness.addAuthor(name)).rejects.toThrow(AuthorAlreadyExistsError)    
+})
+
+it('Should insert new author', async () => {
+    let authorBusiness = new AuthorBusiness()
+    let name = 'Author Name'
+    let author = null
+
+    let mockAuthorRepository = AuthorRepository.mock.instances[0]
+    let mockGetAuthor = mockAuthorRepository.getAuthorByName
+    let mockInsertAuthor = mockAuthorRepository.insertAuthor
+
+    mockGetAuthor.mockReturnValue(author)
+
+    let response = await authorBusiness.addAuthor(name)
+
+    expect(mockGetAuthor).toHaveBeenCalled()
+    expect(mockInsertAuthor).toHaveBeenCalled()
+})
+
 it('Should Not found author data', async () => {
     let authorBusiness = new AuthorBusiness()
     let author = null
     let id = 'id'
 
-    let mockAuthorRepository = AuthorRepository.mock.instances[0];
+    let mockAuthorRepository = AuthorRepository.mock.instances[0]
     let mockGetAuthor = mockAuthorRepository.getAuthorById 
 
     mockGetAuthor.mockReturnValue(author)
@@ -38,7 +70,7 @@ it('Should get author data', async () => {
     let author = new Author('Name', [])
     let id = 'id'
 
-    let mockAuthorRepository = AuthorRepository.mock.instances[0];
+    let mockAuthorRepository = AuthorRepository.mock.instances[0]
     let mockGetAuthor = mockAuthorRepository.getAuthorById 
 
     mockGetAuthor.mockReturnValue(author)
@@ -53,7 +85,7 @@ it('Should NOT delete author by id, but raise an error', async () => {
     let id = 'id'
     let removed = false
 
-    let mockAuthorRepository = AuthorRepository.mock.instances[0];
+    let mockAuthorRepository = AuthorRepository.mock.instances[0]
     let mockDeleteAuthor = mockAuthorRepository.deleteAuthor 
 
     mockDeleteAuthor.mockReturnValue(removed)
@@ -66,7 +98,7 @@ it('Should delete author by id', async () => {
     let id = 'id'
     let removed = true
 
-    let mockAuthorRepository = AuthorRepository.mock.instances[0];
+    let mockAuthorRepository = AuthorRepository.mock.instances[0]
     let mockDeleteAuthor = mockAuthorRepository.deleteAuthor 
 
     mockDeleteAuthor.mockReturnValue(removed)

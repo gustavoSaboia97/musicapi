@@ -39,6 +39,15 @@ it('Should get author by id', async () => {
     expect(MongoAuthor.findById).toHaveBeenCalled()
 })
 
+it('Should get author by id', async () => {
+
+    let name = "name"
+
+    let response = await authorRepository.getAuthorByName(name)
+
+    expect(MongoAuthor.findOne).toHaveBeenCalled()
+})
+
 it('Should delete author by id', async () => {
 
     let id = "id"
