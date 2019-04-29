@@ -1,17 +1,17 @@
 export default class Author {
 
     constructor(name, albuns){
-        this.id = null
+        this._id = null
         this.name = name
         this.albums = albuns
     }
 
     setId(id){
-        this.id = id
+        this._id = id
     }
 
     getId(){
-        return this.id
+        return this._id
     }
 
     getName(){
