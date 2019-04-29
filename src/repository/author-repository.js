@@ -27,7 +27,7 @@ export default class AuthorRepository{
     async getAuthorById(authorId){
         console.log(`[REPOSITORY] Getting author with ID in: ${authorId}`)
 
-        return MongoAuthor.findById(authorId, (err, author) => {
+        return await MongoAuthor.findById(authorId, (err, author) => {
             if (err) return null
             return author
         })
@@ -36,10 +36,9 @@ export default class AuthorRepository{
     async deleteAuthor(authorId){
         console.log(`[REPOSITORY] Deleting author with ID: ${authorId}`)
 
-        return await MongoAuthor.findOneAndDelete(authorId, err => {
+        return await MongoAuthor.deleteOne({_id:authorId}, err => {
             if (err) return false 
             return true 
         })
-        .catch(err => {return false})
     }
 }

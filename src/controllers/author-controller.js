@@ -24,12 +24,12 @@ export default class AuthorController{
         resp.status(200).json(author)
     }
 
-    getAuthor(req, resp){
+    async getAuthor(req, resp){
         console.log(`[CONTROLLER] Get an author ID: ${req.params.id}`)
 
         let id = req.params.id
 
-        let author = this.business.getAuthorById(id)
+        let author = await this.business.getAuthorById(id)
         
         resp.status(200).json(author)
     }

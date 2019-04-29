@@ -23,6 +23,9 @@ export default class AuthorBusiness{
     async getAuthorById(id){
         console.log(`[BUSINESS] Getting author information on repository: ${id}`)
         let author = await this.authorRepository.getAuthorById(id)
+        
+        if (author == null) throw new NotFoundError(`Author ${id}`)
+        
         return author
     }
 
@@ -36,8 +39,6 @@ export default class AuthorBusiness{
         let removed = await this.authorRepository.deleteAuthor(id)
         
         console.log(`[BUSINESS] Author ${id} Deleted? ${removed}`)
-        if (!removed){
-            throw new NotFoundError(`Author ${id}`)
-        }
+        if (!removed) throw new NotFoundError(`Author ${id}`)
     }
 }
