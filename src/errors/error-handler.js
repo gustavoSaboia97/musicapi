@@ -1,4 +1,4 @@
-import ApiError from "./errorTypes/ApiError";
+import ApiError from "./errorTypes/api-error";
 
 export default class ErrorHandler{
 
