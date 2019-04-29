@@ -76,3 +76,34 @@ Response:
 ``` 
     []
 ```
+
+### Get Author by ID - "/api/author/<ID>"
+
+EX: 
+
+    GET: http://localhost:3000/api/author/5cc6681235d878b785f23b30/
+
+Response:
+
+* Status Code: 200
+
+```
+{
+    "_id": "5cc66a3f9dbca4b8ee0dbf83",
+    "name": "Author Name",
+    "albums": []
+}
+```
+
+### Delete Author by ID - "/api/author/<ID>"
+
+EX: 
+
+    DELETE: http://localhost:3000/api/author/5cc6681235d878b785f23b30/
+
+Response:
+
+* Status Code: 200
+
+```
+```
