@@ -32,25 +32,35 @@ it('Should add new author to database', async () => {
 
 it('Should get author by id', async () => {
 
-    let id = "id"
+    let id = 'id'
 
     let response = await authorRepository.getAuthorById(id)
 
     expect(MongoAuthor.findById).toHaveBeenCalled()
 })
 
-it('Should get author by id', async () => {
+it('Should get author by name', async () => {
 
-    let name = "name"
+    let name = 'name'
 
     let response = await authorRepository.getAuthorByName(name)
 
     expect(MongoAuthor.findOne).toHaveBeenCalled()
 })
 
+it('Should edit author data', async () => {
+
+    let name = 'name'
+    let id = 'id'
+
+    let response = await authorRepository.editAuthor(id, name)
+
+    expect(MongoAuthor.findByIdAndUpdate).toHaveBeenCalled()
+})
+
 it('Should delete author by id', async () => {
 
-    let id = "id"
+    let id = 'id'
 
     let response = await authorRepository.deleteAuthor(id)
 

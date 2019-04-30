@@ -34,14 +34,14 @@ export default class AuthorController{
         resp.status(200).json(author)
     }
 
-    editAuthor(req, resp){
+    async editAuthor(req, resp){
         console.log(`[CONTROLLER] Editting an author ID: ${req.params.id}`)
 
         let name = req.body.name
 
         let id = req.params.id
 
-        let author = this.business.editAuthor(id, name)
+        let author = await this.business.editAuthor(id, name)
 
         resp.status(200).json(author)
     }

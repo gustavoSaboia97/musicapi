@@ -52,7 +52,7 @@ it('Should insert new author', async () => {
     expect(mockInsertAuthor).toHaveBeenCalled()
 })
 
-it('Should Not found author data', async () => {
+it('Should Not found author data when get user data by id', async () => {
     let authorBusiness = new AuthorBusiness()
     let author = null
     let id = 'id'
@@ -78,6 +78,40 @@ it('Should get author data', async () => {
     let response = await authorBusiness.getAuthorById(id)
 
     expect(mockGetAuthor).toHaveBeenCalled()
+})
+
+it('Should return not found when editing author data', async () => {
+    let authorBusiness = new AuthorBusiness()
+    let author = null
+    let id = 'id'
+    let name = 'name'
+
+    let mockAuthorRepository = AuthorRepository.mock.instances[0]
+    let mockEditAuthor = mockAuthorRepository.editAuthor
+    let mockGetAuthor = mockAuthorRepository.getAuthorById
+
+    mockGetAuthor.mockReturnValue(author)
+
+    await expect(authorBusiness.editAuthor(id, name)).rejects.toThrow(NotFoundError)
+})
+
+
+it('Should edit author data', async () => {
+    let authorBusiness = new AuthorBusiness()
+    let author = new Author('Name', [])
+    let id = 'id'
+    let name = 'name'
+
+    let mockAuthorRepository = AuthorRepository.mock.instances[0]
+    let mockEditAuthor = mockAuthorRepository.editAuthor
+    let mockGetAuthor = mockAuthorRepository.getAuthorById
+
+    mockGetAuthor.mockReturnValue(author)
+
+    let response = await authorBusiness.editAuthor(id, name)
+
+    expect(mockGetAuthor).toHaveBeenCalled()
+    expect(mockEditAuthor).toHaveBeenCalled()
 })
 
 it('Should NOT delete author by id, but raise an error', async () => {

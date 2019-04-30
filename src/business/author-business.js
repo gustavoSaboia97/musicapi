@@ -39,6 +39,13 @@ export default class AuthorBusiness{
     async editAuthor(id, name){
         console.log(`[BUSINESS] Edit author information on repository: ${id} | ${name}`)
         
+        let author = await this.authorRepository.getAuthorById(id)
+
+        if (author == null) throw new NotFoundError(`Author ${id}`)
+
+        author = await this.authorRepository.editAuthor(id, name)
+
+        return author
     }
 
     async deleteAuthor(id){

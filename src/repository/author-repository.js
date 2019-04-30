@@ -35,8 +35,20 @@ export default class AuthorRepository{
 
     async getAuthorByName(authorName){
         console.log(`[REPOSITORY] Getting author with Name: ${authorName}`)
+        let authorQuery = {name: authorName}
 
-        return await MongoAuthor.findOne({name: authorName}, (err, author) => {
+        return await MongoAuthor.findOne(authorName, (err, author) => {
+            if (err) return null
+            return author
+        })
+    }
+
+    async editAuthor(authorId, newAuthorName){
+        console.log(`[REPOSITORY] Getting author with Name: ${newAuthorName}`)
+        let queryName = {name: newAuthorName}
+        let optionsQuery = {new: true}
+
+        return await MongoAuthor.findByIdAndUpdate(authorId, queryName, optionsQuery, (err, author) => {
             if (err) return null
             return author
         })
@@ -44,8 +56,9 @@ export default class AuthorRepository{
 
     async deleteAuthor(authorId){
         console.log(`[REPOSITORY] Deleting author with ID: ${authorId}`)
+        let idQuery = {_id: authorId}
 
-        return await MongoAuthor.deleteOne({_id:authorId}, err => {
+        return await MongoAuthor.deleteOne(idQuery, err => {
             if (err) return false 
             return true 
         })

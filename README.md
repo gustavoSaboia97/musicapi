@@ -81,7 +81,7 @@ Response:
 
 ``` 
 {
-    "_id": "5cc272d59179d93e0f60ae24",
+    "_id": "5cc6681235d878b785f23b30",
     "name": "Author Name",
     "albums": []
 }
@@ -103,7 +103,7 @@ Response:
     []
 ```
 
-### Get Author by ID - "/api/author/<ID>" - AUTHENTICATED
+### Get Author by ID - "/api/author/<ID>/" - AUTHENTICATED
 
 EX: 
 
@@ -115,13 +115,39 @@ Response:
 
 ```
 {
-    "_id": "5cc66a3f9dbca4b8ee0dbf83",
+    "_id": "5cc6681235d878b785f23b30",
     "name": "Author Name",
     "albums": []
 }
 ```
 
-### Delete Author by ID - "/api/author/<ID>" - AUTHENTICATED
+### Edit Author Data - "/api/author/<ID>/" - AUTHENTICATED
+
+To edit author data.
+
+Ex:
+
+    PUT: http://localhost:3000/api/author/5cc6681235d878b785f23b30/
+
+    BODY:
+            {
+                "name": "New Author Name"
+            }
+
+
+Response:
+
+* Status Code: 200
+
+``` 
+{
+    "_id": "5cc6681235d878b785f23b30",
+    "name": "New Author Name",
+    "albums": []
+}
+```
+
+### Delete Author by ID - "/api/author/<ID>/" - AUTHENTICATED
 
 EX: 
 
