@@ -61,6 +61,32 @@ Response:
 }
 ```
 
+### Insert New Author - "/api/author/"
+
+To insert a new author.
+
+Ex:
+
+    POST: http://localhost:3000/api/author/
+
+    BODY:
+            {
+                "name": "Author Name"
+            }
+
+
+Response:
+
+* Status Code: 200
+
+``` 
+{
+    "_id": "5cc272d59179d93e0f60ae24",
+    "name": "Author Name",
+    "albums": []
+}
+```
+
 ### Get Authors - "/api/author/"
 
 To get all authors that are in the database, and all his information.
