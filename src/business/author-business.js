@@ -18,8 +18,8 @@ export default class AuthorBusiness{
         console.log(`[BUSINESS] Adding new author on repository: ${name}`)
         let author = new Author(name, [])
 
-        let existingAuthor = this.authorRepository.getAuthorByName(name)
-
+        let existingAuthor = await this.authorRepository.getAuthorByName(name)
+        
         if (existingAuthor != null) throw new AuthorAlreadyExistsError()
         
         author = await this.authorRepository.insertAuthor(author)
