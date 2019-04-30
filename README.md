@@ -61,7 +61,7 @@ Response:
 }
 ```
 
-### Insert New Author - "/api/author/"
+### Insert New Author - "/api/author/" - AUTHENTICATED
 
 To insert a new author.
 
@@ -87,7 +87,7 @@ Response:
 }
 ```
 
-### Get Authors - "/api/author/"
+### Get Authors - "/api/author/" - AUTHENTICATED
 
 To get all authors that are in the database, and all his information.
 
@@ -103,7 +103,7 @@ Response:
     []
 ```
 
-### Get Author by ID - "/api/author/<ID>"
+### Get Author by ID - "/api/author/<ID>" - AUTHENTICATED
 
 EX: 
 
@@ -121,7 +121,7 @@ Response:
 }
 ```
 
-### Delete Author by ID - "/api/author/<ID>"
+### Delete Author by ID - "/api/author/<ID>" - AUTHENTICATED
 
 EX: 
 
