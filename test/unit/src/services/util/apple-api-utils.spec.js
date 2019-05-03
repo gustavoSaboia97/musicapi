@@ -4,7 +4,7 @@ let appleApiUtils = new AppleApiUtils();
 let name = "Author Name";
 
 it('Should change spaces to +', () => {
-    let expectedName = 'Author+Name'
+    let expectedName = 'Author+Name';
 
     let newName = appleApiUtils.changeNameToApiFormat(name);
 
