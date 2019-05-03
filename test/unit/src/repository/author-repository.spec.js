@@ -1,68 +1,68 @@
-import MongoAuthor from '../../../../src/config/mongodb'
-import Author from '../../../../src/models/author'
-import AuthorRepository from '../../../../src/repository/author-repository'
+import MongoAuthor from '../../../../src/config/mongodb';
+import Author from '../../../../src/models/author';
+import AuthorRepository from '../../../../src/repository/author-repository';
 
 jest.mock('../../../../src/config/mongodb');
 
-let authorRepository = new AuthorRepository()
+let authorRepository = new AuthorRepository();
 let mockedFunctions = {
     save : () => {}
-}
+};
 
 beforeEach(() => {
-    MongoAuthor.mockClear()
+    MongoAuthor.mockClear();
 });
 
 it('Should get all authors from database', () => {
 
-    let response = authorRepository.getAuthors()
+    let response = authorRepository.getAuthors();
 
-    expect(MongoAuthor.find).toHaveBeenCalled()
-})
+    expect(MongoAuthor.find).toHaveBeenCalled();
+});
 
 it('Should add new author to database', async () => {
-    let author = new Author('Name', [])
+    let author = new Author('Name', []);
 
-    MongoAuthor.mockReturnValue(mockedFunctions)
+    MongoAuthor.mockReturnValue(mockedFunctions);
 
-    let response = await authorRepository.insertAuthor(author)
+    let response = await authorRepository.insertAuthor(author);
 
-    expect(MongoAuthor).toHaveBeenCalled()
-})
+    expect(MongoAuthor).toHaveBeenCalled();
+});
 
 it('Should get author by id', async () => {
 
-    let id = 'id'
+    let id = 'id';
 
-    let response = await authorRepository.getAuthorById(id)
+    let response = await authorRepository.getAuthorById(id);
 
-    expect(MongoAuthor.findById).toHaveBeenCalled()
-})
+    expect(MongoAuthor.findById).toHaveBeenCalled();
+});
 
 it('Should get author by name', async () => {
 
-    let name = 'name'
+    let name = 'name';
 
-    let response = await authorRepository.getAuthorByName(name)
+    let response = await authorRepository.getAuthorByName(name);
 
-    expect(MongoAuthor.findOne).toHaveBeenCalled()
-})
+    expect(MongoAuthor.findOne).toHaveBeenCalled();
+});
 
 it('Should edit author data', async () => {
 
-    let name = 'name'
-    let id = 'id'
+    let name = 'name';
+    let id = 'id';
 
-    let response = await authorRepository.editAuthor(id, name)
+    let response = await authorRepository.editAuthor(id, name);
 
-    expect(MongoAuthor.findByIdAndUpdate).toHaveBeenCalled()
-})
+    expect(MongoAuthor.findByIdAndUpdate).toHaveBeenCalled();
+});
 
 it('Should delete author by id', async () => {
 
-    let id = 'id'
+    let id = 'id';
 
-    let response = await authorRepository.deleteAuthor(id)
+    let response = await authorRepository.deleteAuthor(id);
 
-    expect(MongoAuthor.deleteOne).toHaveBeenCalled()
-})
+    expect(MongoAuthor.deleteOne).toHaveBeenCalled();
+});
