@@ -1,5 +1,16 @@
 # Music API
 
+This is an CRUD that is responsible for getting data about some Artist, Music or Album, search information on Apple iTunes API and inserting that in a MongoDB.
+
+## Technologies
+
+* Node.js
+* MongoDB
+
+## Necessary Configuration
+
+`MONGO_DB_URI=mongodb://localhost:27017/music`
+
 ## Tests
 
 The tests are configured to run with Jest. To run the tests:
@@ -48,4 +59,103 @@ Response:
 {
     "status": "UP"
 }
+```
+
+### Insert New Author - "/api/author/" - AUTHENTICATED
+
+To insert a new author.
+
+Ex:
+
+    POST: http://localhost:3000/api/author/
+
+    BODY:
+            {
+                "name": "Author Name"
+            }
+
+
+Response:
+
+* Status Code: 200
+
+``` 
+{
+    "_id": "5cc6681235d878b785f23b30",
+    "name": "Author Name",
+    "albums": []
+}
+```
+
+### Get Authors - "/api/author/" - AUTHENTICATED
+
+To get all authors that are in the database, and all his information.
+
+Ex:
+
+    GET: http://localhost:3000/api/author/
+
+Response:
+
+* Status Code: 200
+
+``` 
+    []
+```
+
+### Get Author by ID - "/api/author/<ID>/" - AUTHENTICATED
+
+EX: 
+
+    GET: http://localhost:3000/api/author/5cc6681235d878b785f23b30/
+
+Response:
+
+* Status Code: 200
+
+```
+{
+    "_id": "5cc6681235d878b785f23b30",
+    "name": "Author Name",
+    "albums": []
+}
+```
+
+### Edit Author Data - "/api/author/<ID>/" - AUTHENTICATED
+
+To edit author data.
+
+Ex:
+
+    PUT: http://localhost:3000/api/author/5cc6681235d878b785f23b30/
+
+    BODY:
+            {
+                "name": "New Author Name"
+            }
+
+
+Response:
+
+* Status Code: 200
+
+``` 
+{
+    "_id": "5cc6681235d878b785f23b30",
+    "name": "New Author Name",
+    "albums": []
+}
+```
+
+### Delete Author by ID - "/api/author/<ID>/" - AUTHENTICATED
+
+EX: 
+
+    DELETE: http://localhost:3000/api/author/5cc6681235d878b785f23b30/
+
+Response:
+
+* Status Code: 200
+
+```
 ```
