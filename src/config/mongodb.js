@@ -8,7 +8,7 @@ mongoose.connect(MONGO_DB_URI, { useNewUrlParser: true })
 
 const authorSchema = mongoose.Schema({
     name: String,
-    albuns: Array 
+    albums: Array 
 },
 {
     versionKey: false
