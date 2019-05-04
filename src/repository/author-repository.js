@@ -37,7 +37,7 @@ export default class AuthorRepository{
         console.log(`[REPOSITORY] Getting author with Name: ${authorName}`);
         let authorQuery = {name: authorName};
 
-        return await MongoAuthor.findOne(authorName, (err, author) => {
+        return await MongoAuthor.findOne(authorQuery, (err, author) => {
             if (err) return null;
             return author;
         });
