@@ -10,6 +10,7 @@ This is an CRUD that is responsible for getting data about some Artist, Music or
 ## Necessary Configuration
 
 `MONGO_DB_URI=mongodb://localhost:27017/music`
+`APPLE_URI=https://itunes.apple.com/search`
 
 ## Tests
 
@@ -159,3 +160,9 @@ Response:
 
 ```
 ```
+
+### Possible Errors on Author Insertion
+
+- 500 - Some Api Error Happened
+- 404 - Author Not Found
+- 409 - Author Already Exists
