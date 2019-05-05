@@ -4,11 +4,14 @@ import AppleService from '../../../../src/services/apple-service';
 import NotFoundError from '../../../../src/errors/errorTypes/not-found-error';
 import Author from '../../../../src/models/author';
 import AuthorAlreadyExistsError from '../../../../src/errors/errorTypes/author-already-exists-error';
+import Validator from '../../../../src/business/validator';
 
 jest.mock('../../../../src/repository/author-repository');
 jest.mock('../../../../src/services/apple-service');
+jest.mock('../../../../src/business/validator');
 
 beforeEach(() => {
+    Validator.mockClear();
     AuthorRepository.mockClear();
     AppleService.mockClear();
 });
@@ -43,9 +46,11 @@ it('Should insert new author', async () => {
     let name = 'Author Name';
     let author = null;
 
+    let mockValidator = Validator.mock.instances[0];
     let mockAuthorRepository = AuthorRepository.mock.instances[0];
     let mockAppleService = AppleService.mock.instances[0];
 
+    let mockValidateField = mockValidator.validateField;
     let mockGetAuthor = mockAuthorRepository.getAuthorByName;
     let mockInsertAuthor = mockAuthorRepository.insertAuthor;
     let mockGetAuthorDataFromApi = mockAppleService.getAuthorDataFromApi;
@@ -54,6 +59,7 @@ it('Should insert new author', async () => {
 
     let response = await authorBusiness.addAuthor(name);
 
+    expect(mockValidateField).toHaveBeenCalled();
     expect(mockGetAuthor).toHaveBeenCalled();
     expect(mockGetAuthorDataFromApi).toHaveBeenCalled();
     expect(mockInsertAuthor).toHaveBeenCalled();
@@ -109,7 +115,10 @@ it('Should edit author data', async () => {
     let id = 'id';
     let name = 'name';
 
+    let mockValidator = Validator.mock.instances[0];
     let mockAuthorRepository = AuthorRepository.mock.instances[0];
+
+    let mockValidateField = mockValidator.validateField;
     let mockEditAuthor = mockAuthorRepository.editAuthor;
     let mockGetAuthor = mockAuthorRepository.getAuthorById;
 
@@ -117,6 +126,7 @@ it('Should edit author data', async () => {
 
     let response = await authorBusiness.editAuthor(id, name);
 
+    expect(mockValidateField).toHaveBeenCalled();
     expect(mockGetAuthor).toHaveBeenCalled();
     expect(mockEditAuthor).toHaveBeenCalled();
 });
